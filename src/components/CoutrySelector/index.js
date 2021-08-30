@@ -1,7 +1,13 @@
 import React from 'react'
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
 
 function CountrySelector() {
-  return <div>This is country selector</div>
+  return (
+    <FormControl>
+      <InputLabel></InputLabel>
+    </FormControl>
+  )
 }
 
 export default CountrySelector
