@@ -4,18 +4,32 @@ import Highlight from './components/Highlight'
 import Summary from './components/Summary'
 import { getCountries } from './services/countries'
 import './app.css'
+import { sortBy } from 'lodash'
 
 function App() {
   const [countries, setCountries] = useState([])
-  const [selectCountryId, setSelectCountry] = useState('vn')
+  const [selectCountryId, setSelectCountryId] = useState('')
 
+  const onChangeCountry = (value) => {
+    setSelectCountryId(value)
+  }
   useEffect(() => {
-    getCountries().then((res) => setCountries(res.data))
+    getCountries().then((res) => {
+      // sort this response array to get array A -> Z
+      const { data } = res
+      const countries = sortBy(data, 'Country')
+      setCountries(countries)
+      setSelectCountryId('vn')
+    })
   }, [])
 
   return (
     <div className='app-component'>
-      <CountrySelector countries={countries} selectCountry={selectCountryId} />
+      <CountrySelector
+        countries={countries}
+        selectCountryId={selectCountryId}
+        onChangeCountry={onChangeCountry}
+      />
       <Highlight />
       <Summary />
     </div>
