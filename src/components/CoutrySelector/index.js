@@ -1,12 +1,18 @@
-import React from 'react'
-import FormControl from '@material-ui/core/FormControl'
-import InputLabel from '@material-ui/core/InputLabel'
+import React, { useState, useEffect } from 'react'
 
-function CountrySelector() {
+function CountrySelector({ countries, selectCountry }) {
+  useEffect(() => {}, [])
+
   return (
-    <FormControl>
-      <InputLabel></InputLabel>
-    </FormControl>
+    <section className='countries-selector-component'>
+      <form>
+        <select name='' id=''>
+          {countries.map((country) => {
+            return <option>{country.Country}</option>
+          })}
+        </select>
+      </form>
+    </section>
   )
 }
 
