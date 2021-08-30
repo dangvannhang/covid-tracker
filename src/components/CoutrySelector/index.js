@@ -7,6 +7,7 @@ function CountrySelector({ countries, selectCountryId, onChangeCountry }) {
     <section className='countries-selector-component'>
       <form>
         <label htmlFor='country-selected'>Chọn đất nước</label>
+        <br />
         <select
           name='country-selected'
           id='country-selected'

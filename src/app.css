@@ -38,4 +38,24 @@ img {
   max-width: 100%;
 }
 
+.app-component {
+  margin: 30px 40px;
+}
+
+.highlight-card {
+  border: 1px solid black;
+  width: 200px;
+  position: relative;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.highlight-card .card-border {
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  left: 0px;
+  background-color: black;
+}
+
 /*# sourceMappingURL=app.css.map */
