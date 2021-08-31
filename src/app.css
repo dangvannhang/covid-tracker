@@ -50,7 +50,7 @@ img {
 
 .highlight-card {
   border: 1px solid #3c0000;
-  width: 200px;
+  width: 300px;
   position: relative;
   height: 100px;
   display: flex;
@@ -93,6 +93,16 @@ img {
 
 .map-chart {
   width: 40%;
+}
+
+.line-chart-component {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+.line-chart-component .group-button-date {
+  display: flex;
+  justify-content: flex-end;
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import HighchartsReact from 'highcharts-react-official'
 import HighChart from 'highcharts'
+import moment from 'moment'
 
 // tuong ung voi quoc gia ma chung ta da lua chon
 const generateOptions = (data) => {
-  const categories = []
+  const categories = data.map(item => moment(item.Date).format('DD/MM/YYYY'))
 
   return {
     chart: {
@@ -54,14 +55,42 @@ const generateOptions = (data) => {
 
 function LineChart({ data }) {
   const [options, setOptions] = useState({})
+  const [timeShow, setTimeShow] = useState('all')
 
   // everytime when data change, recall function in useEffect
   useEffect(() => {
     setOptions(generateOptions(data))
   }, [data])
 
+  const arrayTime = [
+    {
+      'title': 'Tất cả',
+      'value': 'all'
+    },
+    {
+      'title': '30 Ngày',
+      'value': '30'
+    },
+    {
+      'title': '7 Ngày',
+      'value': '7'
+    }
+  ]
+
   return (
-    <div>
+    <div className="line-chart-component">
+      <div className='group-button-date'>
+
+        {
+          arrayTime.map((time, index) => {
+            return <button className="btn" onClick={() => setTimeShow(time.value)} key={index}>
+            {time.title}
+          </button>
+          })
+        }
+
+        
+      </div>
       <HighchartsReact highcharts={HighChart} options={options} />
     </div>
   )
