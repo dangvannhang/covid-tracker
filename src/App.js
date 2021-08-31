@@ -22,6 +22,9 @@ function App() {
       const { data } = res
       // sort this response array to get array A -> Z
       const countries = sortBy(data, 'Country')
+
+      console.log('countries after sort: ', countries)
+
       setCountries(countries)
       setSelectCountryId('vn')
     })
@@ -34,9 +37,10 @@ function App() {
       )
       getSituationOfCountry(selectedCountry.Slug).then((res) => {
         setCountrySituation(res.data)
+        console.log('situation of country', res)
       })
     }
-  }, [selectCountryId])
+  }, [selectCountryId, countries])
 
   return (
     <div className='app-component'>
