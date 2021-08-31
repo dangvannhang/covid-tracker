@@ -23,6 +23,15 @@
     background-color: $black-color;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    &-confirmed{
+      background-color: $red-color;
+    }
+    &-recovered{
+      background-color: $green-color;
+    }
+    &-death {
+      background-color: $black-color;
+    }
   }
   .card-content {
     margin-left: 20px;

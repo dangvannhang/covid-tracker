@@ -69,6 +69,15 @@ img {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+.highlight-card .card-border-confirmed {
+  background-color: #e6365f;
+}
+.highlight-card .card-border-recovered {
+  background-color: #5cdea6;
+}
+.highlight-card .card-border-death {
+  background-color: #3c0000;
+}
 .highlight-card .card-content {
   margin-left: 20px;
 }
