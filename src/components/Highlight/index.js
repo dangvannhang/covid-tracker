@@ -10,11 +10,11 @@ function Highlight({ countrySituation }) {
   //   { title: 'Số ca khỏi', count: data.Recovered, class: 'recovered' },
   //   { title: 'Số ca tử vong', count: data.Deaths, class: 'death' },
   // ]
+
   return (
-    <div>
-      {/* {summary.map((item) => (
-        <HighlightCard data={item} />
-      ))} */}
+    <div className="highlight-component">
+      <HighlightCard />
+      <HighlightCard />
       <HighlightCard />
     </div>
   )

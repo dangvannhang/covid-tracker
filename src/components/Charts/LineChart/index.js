@@ -55,9 +55,10 @@ const generateOptions = (data) => {
 function LineChart({ data }) {
   const [options, setOptions] = useState({})
 
+  // everytime when data change, recall function in useEffect
   useEffect(() => {
     setOptions(generateOptions(data))
-  }, [])
+  }, [data])
 
   return (
     <div>

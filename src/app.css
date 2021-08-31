@@ -42,20 +42,48 @@ img {
   margin: 30px 40px;
 }
 
+.highlight-component {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .highlight-card {
-  border: 1px solid black;
+  border: 1px solid #3c0000;
   width: 200px;
   position: relative;
   height: 100px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  box-shadow: 0.5px 3px 2px #cccccc;
 }
 .highlight-card .card-border {
   position: absolute;
   height: 100%;
-  width: 2px;
-  left: 0px;
-  background-color: black;
+  width: 5px;
+  left: -1px;
+  background-color: #3c0000;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.highlight-card .card-content {
+  margin-left: 20px;
+}
+
+.summary-component {
+  display: flex;
+  margin-top: 50px;
+}
+
+.line-chart {
+  width: 60%;
+}
+
+.map-chart {
+  width: 40%;
 }
 
 /*# sourceMappingURL=app.css.map */

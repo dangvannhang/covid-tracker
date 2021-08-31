@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import CountrySelector from './components/CoutrySelector'
 import Highlight from './components/Highlight'
 import Summary from './components/Summary'
@@ -11,9 +11,10 @@ function App() {
   const [selectCountryId, setSelectCountryId] = useState('')
   const [countrySituation, setCountrySituation] = useState([])
 
+  const didMountSelectCountry = useRef(false)
   // function help change value of country what we selected to another country
-  const onChangeCountry = (value) => {
-    setSelectCountryId(value)
+  const onChangeCountry = (e) => {
+    setSelectCountryId(e.target.value)
   }
 
   // get countries
@@ -23,34 +24,36 @@ function App() {
       // sort this response array to get array A -> Z
       const countries = sortBy(data, 'Country')
 
-      console.log('countries after sort: ', countries)
-
       setCountries(countries)
       setSelectCountryId('vn')
     })
   }, [])
 
   useEffect(() => {
-    if (selectCountryId) {
-      const selectedCountry = countries.find(
-        (country) => country.ISO2 === selectCountryId.toUpperCase()
+
+    if(selectCountryId){
+      const {Slug} = countries.find(
+        country => country.ISO2.toLowerCase() === selectCountryId
       )
-      getSituationOfCountry(selectedCountry.Slug).then((res) => {
+      
+      getSituationOfCountry(Slug).then(res => {
+        // move final item in array
+        res.data.pop()
         setCountrySituation(res.data)
-        console.log('situation of country', res)
       })
     }
+
   }, [selectCountryId, countries])
 
   return (
-    <div className='app-component'>
+    <div className="app-component">
       <CountrySelector
         countries={countries}
         selectCountryId={selectCountryId}
         onChangeCountry={onChangeCountry}
       />
       <Highlight countrySituation={countrySituation} />
-      <Summary />
+      <Summary countrySituation={countrySituation}/>
     </div>
   )
 }
