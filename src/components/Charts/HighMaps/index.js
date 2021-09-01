@@ -79,12 +79,16 @@ function HighMaps({mapData}) {
 
   if(!mapLoaded) return null
   return(
-    <HighchartsReact
-      highcharts={Highcharts}
-      options={cloneDeep(options)}
-      constructorType={'mapChart'}
-      ref={chartRef}
-    />
+    <div className='high-map-component'>
+
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={cloneDeep(options)}
+        constructorType={'mapChart'}
+        ref={chartRef}
+      />
+    </div>
+   
   )
 
 }

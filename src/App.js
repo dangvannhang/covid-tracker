@@ -47,6 +47,12 @@ function App() {
 
   return (
     <div className="app-component">
+      <div className='header-component'>
+        <h1 className='app-title'>Số liệu Covid 19</h1>
+        <div className='app-noti'>
+          <h3>Trang web chỉ xem cho vui chứ dữ liệu không đúng</h3>
+        </div>
+      </div>
       <CountrySelector
         countries={countries}
         selectCountryId={selectCountryId}

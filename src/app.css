@@ -118,4 +118,15 @@ img {
   color: #fa7fab;
 }
 
+.header-component {
+  text-align: center;
+}
+
+.app-noti {
+  margin: 30px;
+  padding: 3px 5px;
+  border: 0.1px solid #fa7fab;
+  color: #e6365f;
+}
+
 /*# sourceMappingURL=app.css.map */
