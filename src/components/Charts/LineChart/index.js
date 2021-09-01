@@ -70,12 +70,13 @@ function LineChart({ data }) {
         break;
       }
       case SHOW_MONTH_TIME: {
-        const newData = lodash.slice(data, lengthData - 30, lengthData);
+        // const newData = lodash.slice(data, lengthData - 30, lengthData);
+        const newData = data.slice(lengthData - 30)
         setOptions(generateOptions(newData))
         break;
       }
       case SHOW_WEEK_TIME: {
-        const newData = lodash.slice(data, lengthData - 7, lengthData)
+        // const newData = lodash.slice(data, lengthData - 7, lengthData)
         setOptions(generateOptions(newData))
         break;
       }
