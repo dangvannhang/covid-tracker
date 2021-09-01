@@ -104,5 +104,18 @@ img {
   display: flex;
   justify-content: flex-end;
 }
+.line-chart-component .group-button-date .btn {
+  width: 70px;
+  padding: 5px;
+  border: 0.1px solid #c4c4c4;
+  background-color: #ffffff;
+}
+.line-chart-component .group-button-date .btn:not(:last-child) {
+  margin-right: 3px;
+}
+.line-chart-component .group-button-date .btn-click {
+  border-color: #fa7fab;
+  color: #fa7fab;
+}
 
 /*# sourceMappingURL=app.css.map */

@@ -83,7 +83,7 @@ function LineChart({ data }) {
 
         {
           arrayTime.map((time, index) => {
-            return <button className="btn" onClick={() => setTimeShow(time.value)} key={index}>
+            return <button className={`btn btn-${time.value} ${time.value === timeShow ? 'btn-click' : ''} `} onClick={() => setTimeShow(time.value)} key={index}>
             {time.title}
           </button>
           })

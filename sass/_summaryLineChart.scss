@@ -5,5 +5,19 @@
     .group-button-date{
         display: flex;
         justify-content: flex-end;
+
+        .btn{
+            width: 70px;
+            padding: 5px;
+            border: 0.1px solid $light-gray-color;
+            background-color: $white-color;
+            &:not(:last-child){
+                margin-right: 3px;
+            }
+            &-click {
+                border-color: $light-red-color;
+                color: $light-red-color;
+            }
+        }
     }
 }
