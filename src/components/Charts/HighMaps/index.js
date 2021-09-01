@@ -1,9 +1,10 @@
-import React from 'react'
-import Highchart from 'highcharts'
+import React, {useState, useEffect, useRef} from 'react'
+import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import highchartsMap from 'highcharts/modules/map'
+import {cloneDeep} from 'lodash'
 
-highchartsMap(Highchart)
+highchartsMap(Highcharts);
 
 
 const initOptions = {
@@ -13,6 +14,7 @@ const initOptions = {
   title: {
     text: null,
   },
+  // map can be move
   mapNavigation: {
     enabled: true,
   },
@@ -33,17 +35,58 @@ const initOptions = {
   },
   series: [
     {
+      mapData: {},
       name: 'Dân số',
       joinBy: ['hc-key', 'key'],
     },
   ],
 };
-function HighMaps() {
-  return <HighchartsReact 
-    highcharts={Highchart}
-    options={}
-    constructorType='mapChart'
+function HighMaps({mapData}) {
+  const [options, setOptions] = useState({})
+  const [mapLoaded, setMapLoaded] = useState(false)
+  const chartRef = useRef(null)
+
+  useEffect(() => {
+    if (mapData && Object.keys(mapData).length) {
+      console.log({ mapData });
+      const fakeData = mapData.features.map((feature, index) => ({
+        key: feature.properties['hc-key'],
+        value: index,
+      }));
+
+      setOptions(() => ({
+        ...initOptions,
+        title: {
+          text: mapData.title,
+        },
+        series: [
+          { ...initOptions.series[0], mapData: mapData, data: fakeData },
+        ],
+      }));
+
+      if (!mapLoaded) setMapLoaded(true);
+    }
+  }, [mapData, mapLoaded]);
+
+  // have error when we change country, so after call change country, call function update
+  useEffect(()=> {
+    if(chartRef && chartRef.current){
+      chartRef.current.chart.series[0].update({
+        mapData,
+      })
+    }
+  },[options])
+
+  if(!mapLoaded) return null
+  return(
+    <HighchartsReact
+      highcharts={Highcharts}
+      options={cloneDeep(options)}
+      constructorType={'mapChart'}
+      ref={chartRef}
     />
+  )
+
 }
 
 export default HighMaps

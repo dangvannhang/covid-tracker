@@ -25,6 +25,7 @@
     "rules": {
        "no-unused-vars": "warn",
        "react/prop-types": "off",
-        "jsx-a11y/no-onchange": "off"
+        "jsx-a11y/no-onchange": "off",
+        "no-unused-labels": "warn"
     }
 }

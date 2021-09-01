@@ -53,7 +53,7 @@ function App() {
         onChangeCountry={onChangeCountry}
       />
       <Highlight countrySituation={countrySituation} />
-      <Summary countrySituation={countrySituation}/>
+      <Summary countrySituation={countrySituation} selectedCountry={selectCountryId}/>
     </div>
   )
 }
