@@ -77,6 +77,7 @@ function LineChart({ data }) {
       }
       case SHOW_WEEK_TIME: {
         // const newData = lodash.slice(data, lengthData - 7, lengthData)
+        const newData = data.slice(lengthData - 7)
         setOptions(generateOptions(newData))
         break;
       }
