@@ -4,6 +4,7 @@ import Highlight from './components/Highlight'
 import Summary from './components/Summary'
 import { getCountries, getSituationOfCountry } from './services/countries'
 import { sortBy } from 'lodash'
+import '@fontsource/roboto'
 import './app.css'
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
   }, [selectCountryId, countries])
 
   return (
-    <div className="app-component">
+    <div className="app-component" data-testid="app-component">
       <div className='header-component'>
         <h1 className='app-title'>Số liệu Covid 19</h1>
         <div className='app-noti'>
