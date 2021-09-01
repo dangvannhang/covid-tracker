@@ -123,10 +123,12 @@ img {
 }
 
 .app-noti {
-  margin: 30px;
+  width: 100%;
+  margin: 30px 0;
   padding: 3px 5px;
   border: 0.1px solid #fa7fab;
   color: #e6365f;
+  box-shadow: 3px 5px 6px #fa7fab;
 }
 
 /*# sourceMappingURL=app.css.map */
