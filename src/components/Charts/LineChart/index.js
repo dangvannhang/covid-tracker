@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import HighchartsReact from 'highcharts-react-official'
 import HighChart from 'highcharts'
 import moment from 'moment'
+import lodash from 'lodash'
+import {SHOW_ALL_TIME, SHOW_MONTH_TIME, SHOW_WEEK_TIME} from '../../../constants/timeShow'
 
 // tuong ung voi quoc gia ma chung ta da lua chon
 const generateOptions = (data) => {
@@ -55,25 +57,44 @@ const generateOptions = (data) => {
 
 function LineChart({ data }) {
   const [options, setOptions] = useState({})
-  const [timeShow, setTimeShow] = useState('all')
+  const [timeShow, setTimeShow] = useState(SHOW_ALL_TIME)
 
   // everytime when data change, recall function in useEffect
   useEffect(() => {
-    setOptions(generateOptions(data))
-  }, [data])
+   
+    const lengthData = data.length;
+
+    switch (timeShow) {
+      case SHOW_ALL_TIME: {
+        setOptions(generateOptions(data))
+        break;
+      }
+      case SHOW_MONTH_TIME: {
+        const newData = lodash.slice(data, lengthData - 30, lengthData);
+        setOptions(generateOptions(newData))
+        break;
+      }
+      case SHOW_WEEK_TIME: {
+        const newData = lodash.slice(data, lengthData - 7, lengthData)
+        setOptions(generateOptions(newData))
+        break;
+      }
+    }
+    
+  }, [data, timeShow])
 
   const arrayTime = [
     {
       'title': 'Tất cả',
-      'value': 'all'
+      'value': SHOW_ALL_TIME
     },
     {
       'title': '30 Ngày',
-      'value': '30'
+      'value': SHOW_MONTH_TIME
     },
     {
       'title': '7 Ngày',
-      'value': '7'
+      'value': SHOW_WEEK_TIME
     }
   ]
 
@@ -83,7 +104,7 @@ function LineChart({ data }) {
 
         {
           arrayTime.map((time, index) => {
-            return <button className={`btn btn-${time.value} ${time.value === timeShow ? 'btn-click' : ''} `} onClick={() => setTimeShow(time.value)} key={index}>
+            return <button className={`btn ${time.value === timeShow ? 'btn-click' : ''} `} onClick={() => setTimeShow(time.value)} key={index}>
             {time.title}
           </button>
           })
