@@ -6,9 +6,14 @@
 - [Guilde write a README.md from github](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
 ## Prerequisites
-
-## Installation
-
+- [Have node.js](https://nodejs.org/en/)
+- [Clone project](https://github.com/dangvannhang/covid-tracker)
+- [Code IDE](https://code.visualstudio.com/)
 ## Responsive UI
 
+
 ## About Author
+
+
+## References
+- [Skip run test case](https://codewithhugo.com/run-skip-single-jest-test/)

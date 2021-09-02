@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 function CountrySelector({ countries, selectCountryId, onChangeCountry }) {
-  useEffect(() => {}, [])
 
   return (
     <section className="countries-selector-component">
