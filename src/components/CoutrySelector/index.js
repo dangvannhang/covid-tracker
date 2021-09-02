@@ -3,7 +3,7 @@ import React from 'react'
 function CountrySelector({ countries, selectCountryId, onChangeCountry }) {
 
   return (
-    <section className="countries-selector-component">
+    <section className="countries-selector-component" test-dataid="country-selector">
       <form>
         <label htmlFor="country-selected">Chọn đất nước</label>
         <br />
