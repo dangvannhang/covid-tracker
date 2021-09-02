@@ -31,26 +31,24 @@ function App() {
   }, [])
 
   useEffect(() => {
-
-    if(selectCountryId){
-      const {Slug} = countries.find(
-        country => country.ISO2.toLowerCase() === selectCountryId
+    if (selectCountryId) {
+      const { Slug } = countries.find(
+        (country) => country.ISO2.toLowerCase() === selectCountryId
       )
-      
-      getSituationOfCountry(Slug).then(res => {
+
+      getSituationOfCountry(Slug).then((res) => {
         // move final item in array
         res.data.pop()
         setCountrySituation(res.data)
       })
     }
-
   }, [selectCountryId, countries])
 
   return (
     <div className="app-component" data-testid="app-component">
-      <div className='header-component'>
-        <h1 className='app-title'>Số liệu Covid 19</h1>
-        <div className='app-noti'>
+      <div className="header-component">
+        <h1 className="app-title">Số liệu Covid 19</h1>
+        <div className="app-noti">
           <h3>Trang web chỉ xem cho vui chứ dữ liệu không đúng</h3>
         </div>
       </div>
@@ -60,7 +58,10 @@ function App() {
         onChangeCountry={onChangeCountry}
       />
       <Highlight countrySituation={countrySituation} />
-      <Summary countrySituation={countrySituation} selectedCountry={selectCountryId}/>
+      <Summary
+        countrySituation={countrySituation}
+        selectedCountry={selectCountryId}
+      />
     </div>
   )
 }

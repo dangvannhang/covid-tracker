@@ -1,6 +1,6 @@
 import React from 'react'
 
-function HighlightCard({title, count, type}) {
+function HighlightCard({ title, count, type }) {
   return (
     <div className="highlight-card">
       <div className={`card-border card-border-${type}`}></div>

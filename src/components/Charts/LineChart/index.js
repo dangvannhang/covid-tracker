@@ -3,11 +3,15 @@ import HighchartsReact from 'highcharts-react-official'
 import HighChart from 'highcharts'
 import moment from 'moment'
 import lodash from 'lodash'
-import {SHOW_ALL_TIME, SHOW_MONTH_TIME, SHOW_WEEK_TIME} from '../../../constants/timeShow'
+import {
+  SHOW_ALL_TIME,
+  SHOW_MONTH_TIME,
+  SHOW_WEEK_TIME,
+} from '../../../constants/timeShow'
 
 // tuong ung voi quoc gia ma chung ta da lua chon
 const generateOptions = (data) => {
-  const categories = data.map(item => moment(item.Date).format('DD/MM/YYYY'))
+  const categories = data.map((item) => moment(item.Date).format('DD/MM/YYYY'))
 
   return {
     chart: {
@@ -61,58 +65,57 @@ function LineChart({ data }) {
 
   // everytime when data change, recall function in useEffect
   useEffect(() => {
-   
-    const lengthData = data.length;
+    const lengthData = data.length
 
     switch (timeShow) {
       case SHOW_ALL_TIME: {
         setOptions(generateOptions(data))
-        break;
+        break
       }
       case SHOW_MONTH_TIME: {
         // const newData = lodash.slice(data, lengthData - 30, lengthData);
         const newData = data.slice(lengthData - 30)
         setOptions(generateOptions(newData))
-        break;
+        break
       }
       case SHOW_WEEK_TIME: {
         // const newData = lodash.slice(data, lengthData - 7, lengthData)
         const newData = data.slice(lengthData - 7)
         setOptions(generateOptions(newData))
-        break;
+        break
       }
     }
-    
   }, [data, timeShow])
 
   const arrayTime = [
     {
-      'title': 'Tất cả',
-      'value': SHOW_ALL_TIME
+      title: 'Tất cả',
+      value: SHOW_ALL_TIME,
     },
     {
-      'title': '30 Ngày',
-      'value': SHOW_MONTH_TIME
+      title: '30 Ngày',
+      value: SHOW_MONTH_TIME,
     },
     {
-      'title': '7 Ngày',
-      'value': SHOW_WEEK_TIME
-    }
+      title: '7 Ngày',
+      value: SHOW_WEEK_TIME,
+    },
   ]
 
   return (
     <div className="line-chart-component">
-      <div className='group-button-date'>
-
-        {
-          arrayTime.map((time, index) => {
-            return <button className={`btn ${time.value === timeShow ? 'btn-click' : ''} `} onClick={() => setTimeShow(time.value)} key={index}>
-            {time.title}
-          </button>
-          })
-        }
-
-        
+      <div className="group-button-date">
+        {arrayTime.map((time, index) => {
+          return (
+            <button
+              className={`btn ${time.value === timeShow ? 'btn-click' : ''} `}
+              onClick={() => setTimeShow(time.value)}
+              key={index}
+            >
+              {time.title}
+            </button>
+          )
+        })}
       </div>
       <HighchartsReact highcharts={HighChart} options={options} />
     </div>

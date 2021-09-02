@@ -7,4 +7,3 @@ const getSituationOfCountry = (slug) =>
   axios.get(`https://api.covid19api.com/dayone/country/${slug}`)
 
 export { getCountries, getSituationOfCountry }
-

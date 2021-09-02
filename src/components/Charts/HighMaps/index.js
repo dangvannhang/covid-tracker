@@ -1,11 +1,10 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import highchartsMap from 'highcharts/modules/map'
-import {cloneDeep} from 'lodash'
+import { cloneDeep } from 'lodash'
 
-highchartsMap(Highcharts);
-
+highchartsMap(Highcharts)
 
 const initOptions = {
   chart: {
@@ -40,19 +39,19 @@ const initOptions = {
       joinBy: ['hc-key', 'key'],
     },
   ],
-};
-function HighMaps({mapData}) {
+}
+function HighMaps({ mapData }) {
   const [options, setOptions] = useState({})
   const [mapLoaded, setMapLoaded] = useState(false)
   const chartRef = useRef(null)
 
   useEffect(() => {
     if (mapData && Object.keys(mapData).length) {
-      console.log({ mapData });
+      console.log({ mapData })
       const fakeData = mapData.features.map((feature, index) => ({
         key: feature.properties['hc-key'],
         value: index,
-      }));
+      }))
 
       setOptions(() => ({
         ...initOptions,
@@ -62,25 +61,24 @@ function HighMaps({mapData}) {
         series: [
           { ...initOptions.series[0], mapData: mapData, data: fakeData },
         ],
-      }));
+      }))
 
-      if (!mapLoaded) setMapLoaded(true);
+      if (!mapLoaded) setMapLoaded(true)
     }
-  }, [mapData, mapLoaded]);
+  }, [mapData, mapLoaded])
 
   // have error when we change country, so after call change country, call function update
-  useEffect(()=> {
-    if(chartRef && chartRef.current){
+  useEffect(() => {
+    if (chartRef && chartRef.current) {
       chartRef.current.chart.series[0].update({
         mapData,
       })
     }
-  },[options])
+  }, [options])
 
-  if(!mapLoaded) return null
-  return(
-    <div className='high-map-component'>
-
+  if (!mapLoaded) return null
+  return (
+    <div className="high-map-component">
       <HighchartsReact
         highcharts={Highcharts}
         options={cloneDeep(options)}
@@ -88,9 +86,7 @@ function HighMaps({mapData}) {
         ref={chartRef}
       />
     </div>
-   
   )
-
 }
 
 export default HighMaps
