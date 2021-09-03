@@ -25,7 +25,7 @@ function Highlight({ countrySituation }) {
   ]
 
   return (
-    <div className="highlight-component">
+    <div className="highlight-component" data-testid="highlight-component">
       {summary.map((item, index) => {
         return <HighlightCard {...item} key={index} />
       })}
